@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include "linux_parser.h"
 
@@ -77,17 +78,18 @@ float LinuxParser::MemoryUtilization() {
   std::ifstream ifs(kProcDirectory + kMeminfoFilename);
   if (ifs.is_open()){
     std::getline(ifs, Line);
-    std::istringstream LineStream(Line);
-    LineStream >>  KeyWord >> sMemTotal;
+    std::istringstream LineStream1(Line);
+    LineStream1 >>  KeyWord >> sMemTotal;
     MemTotal = std::stof(sMemTotal);
     std::getline(ifs, Line);
-    std::istringstream LineStream(Line);
-    LineStream >> KeyWord >> sMemFree;
+    std::istringstream LineStream2(Line);
+    LineStream2 >> KeyWord >> sMemFree;
     MemFree = std::stof(sMemFree);
     return MemTotal - MemFree; 
   };
   return 0.0; 
 }
+
 
 // TODO: Read and return the system uptime
 long LinuxParser::UpTime() { return 0; }
