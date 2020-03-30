@@ -21,6 +21,7 @@ string Format::ElapsedTime(long seconds)
     mm = (seconds % 3600) / 60;
     ss = (seconds % 3600) % 60;
 
+    // If less than 10 add "0" before the digit
     hh < 10? hh_s = "0" + std::to_string(hh) : hh_s = std::to_string(hh);
     mm < 10? mm_s = "0" + std::to_string(mm) : mm_s = std::to_string(mm);
     ss < 10? ss_s = "0" + std::to_string(ss) : ss_s = std::to_string(ss);   

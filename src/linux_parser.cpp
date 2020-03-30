@@ -13,19 +13,24 @@ using std::to_string;
 using std::vector;
 
 // DONE: An example of how to read data from the filesystem
-string LinuxParser::OperatingSystem() {
+string LinuxParser::OperatingSystem()
+{
   string line;
   string key;
   string value;
   std::ifstream filestream(kOSPath);
-  if (filestream.is_open()) {
-    while (std::getline(filestream, line)) {
+  if (filestream.is_open())
+  {
+    while (std::getline(filestream, line))
+    {
       std::replace(line.begin(), line.end(), ' ', '_');
       std::replace(line.begin(), line.end(), '=', ' ');
       std::replace(line.begin(), line.end(), '"', ' ');
       std::istringstream linestream(line);
-      while (linestream >> key >> value) {
-        if (key == "PRETTY_NAME") {
+      while (linestream >> key >> value)
+      {
+        if (key == "PRETTY_NAME")
+        {
           std::replace(value.begin(), value.end(), '_', ' ');
           return value;
         }
@@ -36,11 +41,13 @@ string LinuxParser::OperatingSystem() {
 }
 
 // DONE: An example of how to read data from the filesystem
-string LinuxParser::Kernel() {
+string LinuxParser::Kernel()
+{
   string os, version, kernel;
   string line;
   std::ifstream stream(kProcDirectory + kVersionFilename);
-  if (stream.is_open()) {
+  if (stream.is_open())
+  {
     std::getline(stream, line);
     std::istringstream linestream(line);
     linestream >> os >> version >> kernel;
@@ -49,16 +56,20 @@ string LinuxParser::Kernel() {
 }
 
 // BONUS: Update this to use std::filesystem
-vector<int> LinuxParser::Pids() {
+vector<int> LinuxParser::Pids()
+{
   vector<int> pids;
-  DIR* directory = opendir(kProcDirectory.c_str());
-  struct dirent* file;
-  while ((file = readdir(directory)) != nullptr) {
+  DIR *directory = opendir(kProcDirectory.c_str());
+  struct dirent *file;
+  while ((file = readdir(directory)) != nullptr)
+  {
     // Is this a directory?
-    if (file->d_type == DT_DIR) {
+    if (file->d_type == DT_DIR)
+    {
       // Is every character of the name a digit?
       string filename(file->d_name);
-      if (std::all_of(filename.begin(), filename.end(), isdigit)) {
+      if (std::all_of(filename.begin(), filename.end(), isdigit))
+      {
         int pid = stoi(filename);
         pids.push_back(pid);
       }
@@ -69,13 +80,15 @@ vector<int> LinuxParser::Pids() {
 }
 
 // TODO: Read and return the system memory utilization
-float LinuxParser::MemoryUtilization() { 
+float LinuxParser::MemoryUtilization()
+{
   string Line;
   string KeyWord;
   float MemTotal;
   float MemFree;
   std::ifstream ifs(kProcDirectory + kMeminfoFilename);
-  if (ifs.is_open()){
+  if (ifs.is_open())
+  {
     std::getline(ifs, Line);
     std::istringstream LineStream1(Line);
     LineStream1 >> KeyWord >> MemTotal;
@@ -83,26 +96,27 @@ float LinuxParser::MemoryUtilization() {
     std::istringstream LineStream2(Line);
     LineStream2 >> KeyWord >> MemFree;
     //std::cout << std::to_string((MemTotal - MemFree) / MemTotal) << "\n";
-    return (MemTotal - MemFree) / MemTotal; 
+    return (MemTotal - MemFree) / MemTotal;
   };
-  return 0.0; 
+  return 0.0;
 }
 
-
 // TODO: Read and return the system uptime
-long LinuxParser::UpTime() { 
+long LinuxParser::UpTime()
+{
   std::string file;
   std::string line;
   long total;
   std::ifstream ifs(kProcDirectory + kUptimeFilename);
-  if (ifs.is_open()){
+  if (ifs.is_open())
+  {
     std::getline(ifs, line);
     std::istringstream LineStream(line);
     LineStream >> total;
     std::cout << std::to_string(total);
     return total;
   };
-  return 0; 
+  return 0;
 }
 
 // TODO: Read and return the number of jiffies for the system
@@ -122,7 +136,26 @@ long LinuxParser::IdleJiffies() { return 0; }
 vector<string> LinuxParser::CpuUtilization() { return {}; }
 
 // TODO: Read and return the total number of processes
-int LinuxParser::TotalProcesses() { return 0; }
+int LinuxParser::TotalProcesses()
+{
+  int value;
+  string key;
+  string Line;
+  std::ifstream ifs(kProcDirectory + kMeminfoFilename);
+  if (ifs.is_open())
+  {
+    while (std::getline(ifs, Line))
+    {
+      std::istringstream Linestream(Line);
+      Linestream >> key >> value;
+      if (key == "processes")
+      {
+        return value;
+      }
+    }
+  }
+  return 0;
+}
 
 // TODO: Read and return the number of running processes
 int LinuxParser::RunningProcesses() { return 0; }

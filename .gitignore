@@ -23,3 +23,5 @@ build/CMakeFiles/3.16.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
 build/CMakeFiles/monitor.dir/src/system.cpp.o
 .vscode/settings.json
 build/CMakeFiles/monitor.dir/src/format.cpp.o
+build/.cmake/api/v1/reply/index-2020-03-30T19-55-16-0845.json
+build/CMakeFiles/monitor.dir/src/linux_parser.cpp.o
