@@ -13,15 +13,19 @@ string Format::ElapsedTime(long seconds)
     int hh;
     int mm;
     int ss;
-    std::string time;
+    std::string hh_s;
+    std::string mm_s;
+    std::string ss_s;
 
     hh = seconds / 3600;
     mm = (seconds % 3600) / 60;
     ss = (seconds % 3600) % 60;
 
-    time = std::to_string(hh) + ":" + std::to_string(mm) + ":" + std::to_string(ss);
+    hh < 10? hh_s = "0" + std::to_string(hh) : hh_s = std::to_string(hh);
+    mm < 10? mm_s = "0" + std::to_string(mm) : mm_s = std::to_string(mm);
+    ss < 10? ss_s = "0" + std::to_string(ss) : ss_s = std::to_string(ss);   
 
-    return time;
+    return hh_s + ":" + mm_s + ":" + ss_s;
 }
 
 //Unit Testing 
