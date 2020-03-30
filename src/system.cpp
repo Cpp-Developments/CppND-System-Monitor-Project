@@ -23,7 +23,7 @@ vector<Process> &System::Processes() { return processes_; }
 // TODO: Return the system's kernel identifier (string)
 std::string System::Kernel()
 {
-    return linux_parser::Kernel();
+    return LinuxParser::Kernel();
 }
 
 // TODO: Return the system's memory utilization
@@ -35,7 +35,7 @@ float System::MemoryUtilization()
 // TODO: Return the operating system name
 std::string System::OperatingSystem()
 {
-    return linux_parser::OperatingSystem();
+    return LinuxParser::OperatingSystem();
 }
 
 // TODO: Return the number of processes actively running on the system
