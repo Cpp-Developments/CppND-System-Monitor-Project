@@ -85,7 +85,7 @@ float LinuxParser::MemoryUtilization() {
     std::istringstream LineStream2(Line);
     LineStream2 >> KeyWord >> sMemFree;
     MemFree = std::stof(sMemFree);
-    return MemTotal - MemFree; 
+    return (MemTotal - MemFree) / MemTotal; 
   };
   return 0.0; 
 }
