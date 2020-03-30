@@ -141,7 +141,7 @@ int LinuxParser::TotalProcesses()
   int value;
   string key;
   string Line;
-  std::ifstream ifs(kProcDirectory + kMeminfoFilename);
+  std::ifstream ifs(kProcDirectory + kStatFilename);
   if (ifs.is_open())
   {
     while (std::getline(ifs, Line))
