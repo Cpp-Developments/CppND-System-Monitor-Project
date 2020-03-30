@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <iostream>
 
 #include "linux_parser.h"
 
@@ -71,20 +72,17 @@ vector<int> LinuxParser::Pids() {
 float LinuxParser::MemoryUtilization() { 
   string Line;
   string KeyWord;
-  string sMemTotal;
-  string sMemFree;
   float MemTotal;
   float MemFree;
   std::ifstream ifs(kProcDirectory + kMeminfoFilename);
   if (ifs.is_open()){
     std::getline(ifs, Line);
     std::istringstream LineStream1(Line);
-    LineStream1 >>  KeyWord >> sMemTotal;
-    MemTotal = std::stof(sMemTotal);
+    LineStream1 >> KeyWord >> MemTotal;
     std::getline(ifs, Line);
     std::istringstream LineStream2(Line);
-    LineStream2 >> KeyWord >> sMemFree;
-    MemFree = std::stof(sMemFree);
+    LineStream2 >> KeyWord >> MemFree;
+    //std::cout << std::to_string((MemTotal - MemFree) / MemTotal) << "\n";
     return (MemTotal - MemFree) / MemTotal; 
   };
   return 0.0; 
