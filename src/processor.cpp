@@ -3,17 +3,21 @@
 
 // TODO: Return the aggregate CPU utilization
 float Processor::Utilization()
-{
-    float dIdle;
+{    
     float dTotal;
-
-    // Read and copy the first CPU values
+    float dIdle;
+    float utilization;
+    // Read and update the CPU values
     mapCpu();
     CpuUtilizationValues();
-    dTotal = CPUUtilizationValues_[CPUValues::Total_];
-    dIdle = CPUUtilizationValues_[CPUValues::Idle_];
-    //Calculate CPU utilization with differential values
-    return (dTotal - dIdle) / dTotal;
+    // Calculate delta utilization values
+    dTotal = CPUUtilizationValues_[CPUValues::Total_] - pTotal_;
+    dIdle = CPUUtilizationValues_[CPUValues::Idle_] - pIdle_;
+    utilization = (dTotal - dIdle) / dTotal;
+    // Update the previous values with new values
+    pTotal_ = CPUUtilizationValues_[CPUValues::Total_];
+    pIdle_ = CPUUtilizationValues_[CPUValues::Idle_];
+    return utilization;
 }
 
 // Update CPU Utilization values
