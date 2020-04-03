@@ -1,7 +1,4 @@
-
-#include <linux_parser.h>
 #include <string>
-
 #include "processor.h"
 
 // TODO: Return the aggregate CPU utilization
