@@ -29,13 +29,13 @@ void Processor::CpuUtilizationValues()
     CPUUtilizationValues_[CPUValues::Total_] = CPUUtilizationValues_[CPUValues::Idle_] + CPUUtilizationValues_[CPUValues::NonIdle_];
 }
 
-// Create an unordered map from pared data based on cpu states
+// Create an unordered map from parsed data based on cpu states
 void Processor::mapCpu()
 {
     std::vector<std::string> cpuUtilization;
     cpuUtilization = LinuxParser::CpuUtilization();
     for (size_t i = 0; i < cpuUtilization.size(); ++i)
     {
-        CpuMap_[LinuxParser::CPUStates(i)] = std::stol(cpuUtilization[i]);
+        CpuMap_[static_cast<LinuxParser::CPUStates>(i)] = std::stol(cpuUtilization[i]);
     }
 }

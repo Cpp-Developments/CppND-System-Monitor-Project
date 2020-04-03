@@ -15,7 +15,7 @@ private:
     enum CPUValues {
         Idle_,
         NonIdle_,
-        Total_,
+        Total_
     };
 
     std::unordered_map<CPUValues, float, std::hash<std::underlying_type<CPUValues>::type>> CPUUtilizationValues_;
