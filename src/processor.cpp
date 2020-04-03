@@ -6,18 +6,19 @@ float Processor::Utilization()
 {    
     float dTotal;
     float dIdle;
-    float utilization;
+    float dNonIdle;
     // Read and update the CPU values
     mapCpu();
     CpuUtilizationValues();
     // Calculate delta utilization values
     dTotal = CPUUtilizationValues_[CPUValues::Total_] - pTotal_;
     dIdle = CPUUtilizationValues_[CPUValues::Idle_] - pIdle_;
-    utilization = (dTotal - dIdle) / dTotal;
+    dNonIdle = CPUUtilizationValues_[CPUValues::NonIdle_] - pNonIdle_;
     // Update the previous values with new values
     pTotal_ = CPUUtilizationValues_[CPUValues::Total_];
     pIdle_ = CPUUtilizationValues_[CPUValues::Idle_];
-    return utilization;
+    pNonIdle_ = CPUUtilizationValues_[CPUValues::NonIdle_]; 
+    return dNonIdle / dTotal;
 }
 
 // Update CPU Utilization values
