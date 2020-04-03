@@ -12,11 +12,6 @@ float Processor::Utilization()
     CpuUtilizationValues();
     dTotal = CPUUtilizationValues_[CPUValues::Total_];
     dIdle = CPUUtilizationValues_[CPUValues::Idle_];
-    //Update the CPU values
-    mapCpu();
-    CpuUtilizationValues();
-    dTotal -= CPUUtilizationValues_[CPUValues::Total_];
-    dIdle -= CPUUtilizationValues_[CPUValues::Idle_];
     //Calculate CPU utilization with differential values
     return (dTotal - dIdle) / dTotal;
 }
