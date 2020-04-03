@@ -18,7 +18,6 @@ private:
         Total_
     };
 
-    long pIdle_{0};
     long pTotal_{0};
     long pNonIdle_{0};
 
