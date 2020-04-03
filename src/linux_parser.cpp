@@ -139,13 +139,15 @@ vector<string> LinuxParser::CpuUtilization()
   string line;
   string word;
   std::ifstream ifs(kProcDirectory + kStatFilename);
-  if (ifs.is_open()){
+  if (ifs.is_open())
+  {
     std::getline(ifs, line);
     std::istringstream linestream(line);
     linestream >> word;
     if (word == "cpu")
     {
-      while(linestream >> word){
+      while (linestream >> word)
+      {
         cpu.push_back(word);
       }
       return cpu;
@@ -208,7 +210,26 @@ string LinuxParser::Ram(int pid [[maybe_unused]]) { return string(); }
 
 // TODO: Read and return the user ID associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Uid(int pid [[maybe_unused]]) { return string(); }
+string LinuxParser::Uid(int pid [[maybe_unused]])
+{
+  string key;
+  string value;
+  string line;
+  std::ifstream ifs(kProcDirectory + "/" + to_string(pid) + kStatusFilename);
+  if (ifs.is_open())
+  {
+    while (std::getline(ifs, line))
+    {
+      std::istringstream linestream(line);
+      linestream >> key >> value;
+      if (key == "Uid:")
+      {
+        return value;
+      }
+    }
+  }
+  return "NA";
+}
 
 // TODO: Read and return the user associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
