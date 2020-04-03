@@ -11,20 +11,20 @@ public:
 
     // TODO: Declare any necessary private members
 private:
-
-    enum CPUValues {
+    enum CPUValues
+    {
         Idle_,
         NonIdle_,
         Total_
     };
 
-    float pIdle_{0.0};
-    float pTotal_{0.0};
-    float pNonIdle_{0.0};
+    long pIdle_{0};
+    long pTotal_{0};
+    long pNonIdle_{0};
 
-    std::unordered_map<CPUValues, float, std::hash<std::underlying_type<CPUValues>::type>> CPUUtilizationValues_;
-    std::unordered_map<LinuxParser::CPUStates, float, std::hash<std::underlying_type<LinuxParser::CPUStates>::type>> CpuMap_;
-    
+    std::unordered_map<CPUValues, long, std::hash<std::underlying_type<CPUValues>::type>> CPUUtilizationValues_;
+    std::unordered_map<LinuxParser::CPUStates, long, std::hash<std::underlying_type<LinuxParser::CPUStates>::type>> CpuMap_;
+
     void CpuUtilizationValues();
     void mapCpu();
 };

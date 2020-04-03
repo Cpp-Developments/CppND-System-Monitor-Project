@@ -4,9 +4,10 @@
 // TODO: Return the aggregate CPU utilization
 float Processor::Utilization()
 {    
-    float dTotal;
-    float dIdle;
-    float dNonIdle;
+    long dTotal;
+    long dIdle;
+    long dNonIdle;
+    float utilization;
     // Read and update the CPU values
     mapCpu();
     CpuUtilizationValues();
@@ -18,7 +19,8 @@ float Processor::Utilization()
     pTotal_ = CPUUtilizationValues_[CPUValues::Total_];
     pIdle_ = CPUUtilizationValues_[CPUValues::Idle_];
     pNonIdle_ = CPUUtilizationValues_[CPUValues::NonIdle_]; 
-    return dNonIdle / dTotal;
+    utilization = dNonIdle / dTotal;
+    return utilization;
 }
 
 // Update CPU Utilization values
@@ -36,6 +38,6 @@ void Processor::mapCpu()
     cpuUtilization = LinuxParser::CpuUtilization();
     for (size_t i = 0; i < cpuUtilization.size(); ++i)
     {
-        CpuMap_[static_cast<LinuxParser::CPUStates>(i)] = std::stof(cpuUtilization[i]);
+        CpuMap_[static_cast<LinuxParser::CPUStates>(i)] = std::stol(cpuUtilization[i]);
     }
 }
