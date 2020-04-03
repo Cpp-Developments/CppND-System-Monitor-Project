@@ -36,6 +36,6 @@ void Processor::mapCpu()
     cpuUtilization = LinuxParser::CpuUtilization();
     for (size_t i = 0; i < cpuUtilization.size(); ++i)
     {
-        CpuMap_[static_cast<LinuxParser::CPUStates>(i)] = std::stol(cpuUtilization[i]);
+        CpuMap_[static_cast<LinuxParser::CPUStates>(i)] = std::stof(cpuUtilization[i]);
     }
 }
