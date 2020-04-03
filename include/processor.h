@@ -18,8 +18,8 @@ private:
         Total_,
     };
 
-    std::unordered_map<CPUValues, long, std::hash<std::underlying_type<CPUValues>::type>> CPUUtilizationValues_;
-    std::unordered_map<LinuxParser::CPUStates, long, std::hash<std::underlying_type<LinuxParser::CPUStates>::type>> CpuMap_;
+    std::unordered_map<CPUValues, float, std::hash<std::underlying_type<CPUValues>::type>> CPUUtilizationValues_;
+    std::unordered_map<LinuxParser::CPUStates, float, std::hash<std::underlying_type<LinuxParser::CPUStates>::type>> CpuMap_;
     
     void CpuUtilizationValues();
     void mapCpu();

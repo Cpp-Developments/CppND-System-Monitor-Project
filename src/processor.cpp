@@ -4,8 +4,8 @@
 // TODO: Return the aggregate CPU utilization
 float Processor::Utilization()
 {
-    long dIdle;
-    long dTotal;
+    float dIdle;
+    float dTotal;
 
     // Read and copy the first CPU values
     mapCpu();
