@@ -20,14 +20,14 @@ float Process::CpuUtilization()
     vector<std::string> ProcessCPU;
     ProcessCPU = LinuxParser::CpuUtilization(pid_);
 
-    long utime = std::stol(ProcessCPU[13]);
-    long stime = std::stol(ProcessCPU[14]);
-    long cutime = std::stol(ProcessCPU[15]);
-    long cstime = std::stol(ProcessCPU[16]);
-    long starttime = std::stol(ProcessCPU[21]);
-    long hz = sysconf(_SC_CLK_TCK);
-    long int uptime = UpTime();
-    long totaltime;
+    long int utime = std::stol(ProcessCPU[13]);
+    long int stime = std::stol(ProcessCPU[14]);
+    long int cutime = std::stol(ProcessCPU[15]);
+    long int cstime = std::stol(ProcessCPU[16]);
+    long int starttime = std::stol(ProcessCPU[21]);
+    long int hz = sysconf(_SC_CLK_TCK);
+    long uptime = LinuxParser::UpTime();
+    long int totaltime;
     long int seconds;
 
     totaltime = utime + stime + cutime + cstime;
@@ -46,7 +46,10 @@ string Process::Ram() { return string(); }
 string Process::User() { return string(); }
 
 // TODO: Return the age of this process (in seconds)
-long int Process::UpTime() { return 0; }
+long int Process::UpTime()
+{
+    return LinuxParser::UpTime(pid_);
+}
 
 // TODO: Overload the "less than" comparison operator for Process objects
 // REMOVE: [[maybe_unused]] once you define the function
