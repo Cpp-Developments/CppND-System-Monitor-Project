@@ -21,10 +21,12 @@ Processor &System::Cpu() { return cpu_; }
 vector<Process> &System::Processes() { return processes_; }
 
 // TODO: Update processes and return them
-vector<Process> System::UpdateProcesses(){
+vector<Process> System::UpdateProcesses()
+{
     vector<Process> processes;
-    vector<int> pids = LinuxParser::Pids(); 
-    for (int p : pids){
+    vector<int> pids = LinuxParser::Pids();
+    for (int p : pids)
+    {
         processes.push_back(Process(p));
     }
     return processes;

@@ -252,7 +252,7 @@ string LinuxParser::Ram(int pid)
       if (key == "VmSize:")
       {
         linestream >> value;
-        float ram = std::stof(value) / (1024 + 1.0);
+        int ram = std::stof(value) / (1024);
         return to_string(ram);
       }
     }
