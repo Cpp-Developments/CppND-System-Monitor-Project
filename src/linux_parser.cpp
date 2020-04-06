@@ -226,7 +226,7 @@ string LinuxParser::Command(int pid)
   string line;
   string word;
   std::ifstream ifs(kProcDirectory + "/" + to_string(pid) + kCmdlineFilename);
-  if (ifs.is_open)
+  if (ifs.is_open())
   {
     std::getline(ifs, line);
     std::istringstream linestream(line);
