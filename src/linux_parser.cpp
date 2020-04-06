@@ -229,9 +229,7 @@ string LinuxParser::Command(int pid)
   if (ifs.is_open())
   {
     std::getline(ifs, line);
-    std::istringstream linestream(line);
-    linestream >> word;
-    return word;
+    return line;
   }
   return string();
 }
