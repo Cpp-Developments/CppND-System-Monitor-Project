@@ -20,8 +20,9 @@ class System {
 
   // TODO: Define any necessary private members
  private:
+  std::vector<Process> UpdateProcesses();
   Processor cpu_ = Processor();
-  std::vector<Process> processes_ = {};
+  std::vector<Process> processes_ = UpdateProcesses();
 };
 
 #endif
