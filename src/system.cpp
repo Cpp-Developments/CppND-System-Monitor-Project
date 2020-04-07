@@ -28,7 +28,6 @@ vector<Process> &System::Processes()
 // TODO: Update processes and return them
 void System::UpdateProcesses_()
 {
-    processes_ = {};
     vector<int> pids = LinuxParser::Pids();
     for (int p : pids)
     {

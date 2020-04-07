@@ -63,9 +63,5 @@ long int Process::UpTime()
 // TODO: Overload the "less than" comparison operator for Process objects
 bool Process::operator<(Process const &a) const
 {
-    if (a.cpu_ >= this->cpu_)
-    {
-        return true;
-    }
-    return false;
+    return a.cpu_ <= this->cpu_;
 }
