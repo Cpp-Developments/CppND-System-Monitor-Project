@@ -9,7 +9,7 @@ It contains relevant attributes as shown below
 class Process
 {
 public:
-    Process(int p) : pid_(p), cpu_(CpuUtilization()){};
+    Process(int p);
     int Pid();                              // TODO: See src/process.cpp
     std::string User();                     // TODO: See src/process.cpp
     std::string Command();                  // TODO: See src/process.cpp
