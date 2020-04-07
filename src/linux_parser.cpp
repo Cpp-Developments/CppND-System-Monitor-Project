@@ -287,7 +287,7 @@ string LinuxParser::User(int pid)
   string username;
   string pass;
   string uid;
-  std::ifstream ifs(kProcDirectory);
+  std::ifstream ifs(kPasswordPath);
   if (ifs.is_open())
   {
     while (std::getline(ifs, line))
