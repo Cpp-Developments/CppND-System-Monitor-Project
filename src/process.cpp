@@ -33,7 +33,7 @@ float Process::CpuUtilization()
     long int totaltime;
     long int seconds;
 
-    totaltime = utime + stime + cutime + cstime;
+    totaltime = utime + stime;
     seconds = uptime - (starttime / hz);
 
     return (totaltime / hz) / (seconds * 1.0);
@@ -66,5 +66,5 @@ long int Process::UpTime()
 // TODO: Overload the "less than" comparison operator for Process objects
 bool Process::operator<(Process const &a) const
 {
-    return a.cpu_ <= this->cpu_;
+    return a.cpu_ < this->cpu_;
 }
