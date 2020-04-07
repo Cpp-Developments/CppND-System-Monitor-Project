@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <linux_parser.h>
+#include <algorithm>
 
 #include "process.h"
 #include "processor.h"
@@ -18,18 +19,22 @@ using std::vector;
 Processor &System::Cpu() { return cpu_; }
 
 // TODO: Return a container composed of the system's processes
-vector<Process> &System::Processes() { return processes_; }
+vector<Process> &System::Processes()
+{
+    UpdateProcesses();
+    return processes_;
+}
 
 // TODO: Update processes and return them
-vector<Process> System::UpdateProcesses()
+void System::UpdateProcesses()
 {
-    vector<Process> processes;
+    processes_ = {};
     vector<int> pids = LinuxParser::Pids();
     for (int p : pids)
     {
-        processes.push_back(Process(p));
+        processes_.push_back(Process(p));
     }
-    return processes;
+    std::sort(processes_.begin(), processes_.end());
 }
 
 // TODO: Return the system's kernel identifier (string)
