@@ -21,12 +21,12 @@ Processor &System::Cpu() { return cpu_; }
 // TODO: Return a container composed of the system's processes
 vector<Process> &System::Processes()
 {
-    UpdateProcesses();
+    UpdateProcesses_();
     return processes_;
 }
 
 // TODO: Update processes and return them
-void System::UpdateProcesses()
+void System::UpdateProcesses_()
 {
     processes_ = {};
     vector<int> pids = LinuxParser::Pids();
