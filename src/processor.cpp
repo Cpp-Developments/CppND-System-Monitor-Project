@@ -6,7 +6,6 @@ float Processor::Utilization()
 {
     long dTotal;
     long dNonIdle;
-    float utilization;
     // Read and update the CPU values
     mapCpu();
     CpuUtilizationValues();
