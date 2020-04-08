@@ -33,7 +33,7 @@ float Process::CpuUtilization()
     long int totaltime;
     long int seconds;
 
-    totaltime = utime + stime;
+    totaltime = utime + stime + cutime + cstime;
     seconds = uptime - (starttime / hz);
 
     return (totaltime / hz) / (seconds * 1.0);
