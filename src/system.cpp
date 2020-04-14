@@ -18,6 +18,12 @@ using std::vector;
 // TODO: Return the system's CPU
 Processor &System::Cpu() { return cpu_; }
 
+int System::GetNumCPU()
+{
+    cpuNum_ = LinuxParser::GetNumberofCPUs();
+    return cpuNum_;
+}
+
 // TODO: Return a container composed of the system's processes
 vector<Process> &System::Processes()
 {
@@ -25,7 +31,7 @@ vector<Process> &System::Processes()
     return processes_;
 }
 
-// TODO: Update processes 
+// TODO: Update processes
 void System::UpdateProcesses_()
 {
     processes_.clear();

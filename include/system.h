@@ -17,12 +17,13 @@ class System {
   int RunningProcesses();             // TODO: See src/system.cpp
   std::string Kernel();               // TODO: See src/system.cpp
   std::string OperatingSystem();      // TODO: See src/system.cpp
-
+  int GetNumCPU();
   // TODO: Define any necessary private members
  private:
-  void UpdateProcesses_();
+  int cpuNum_ = 1;
   Processor cpu_ = Processor();
   std::vector<Process> processes_ = {};
+  void UpdateProcesses_();
 };
 
 #endif
