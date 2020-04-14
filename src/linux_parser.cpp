@@ -145,7 +145,7 @@ int LinuxParser::GetNumberofCPUs()
     {
       std::istringstream linestream(line);
       linestream >> key;
-      if (key == "cpu")
+      if (key.substr(0,3) == "cpu")
       {
         num++;
       }
