@@ -18,6 +18,17 @@ using std::vector;
 // TODO: Return the system's CPU
 Processor &System::Cpu() { return cpu_; }
 
+// Return a container of cpu info
+std::vector<Processor> &System::Cpus()
+{
+    GetNumCPU();
+    cpus_ = {};
+    for (int i = 0; i < cpuNum_; ++i){
+        cpus_.push_back(Processor());
+    }
+    return cpus_;
+}
+
 int System::GetNumCPU()
 {
     cpuNum_ = LinuxParser::GetNumberofCPUs();
