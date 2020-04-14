@@ -42,6 +42,7 @@ enum CPUStates
   kGuest_,
   kGuestNice_
 };
+int GetNumberofCPUs();
 std::vector<std::string> CpuUtilization();
 long Jiffies();
 long ActiveJiffies();
