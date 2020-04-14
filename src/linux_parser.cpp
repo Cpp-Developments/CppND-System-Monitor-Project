@@ -138,14 +138,14 @@ int LinuxParser::GetNumberofCPUs()
   int num = 0;
   string line;
   string key;
-  std::ifstream ifs(kProcDirectory + kStatFilename);
+  std::ifstream ifs(kProcDirectory + kCpuinfoFilename);
   if (ifs.is_open())
   {
     while (std::getline(ifs, line))
     {
       std::istringstream linestream(line);
       linestream >> key;
-      if (key.substr(0,3) == "cpu")
+      if (key == "processor")
       {
         num++;
       }
