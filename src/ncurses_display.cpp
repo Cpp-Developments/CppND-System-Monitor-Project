@@ -45,10 +45,10 @@ void NCursesDisplay::DisplaySystem(System &system, WINDOW *window)
     wattroff(window, COLOR_PAIR(1));
   }
   mvwprintw(window, ++row, 2, "Memory: ");
-  wattron(window, COLOR_PAIR(1));
+  wattron(window, COLOR_PAIR(4));
   mvwprintw(window, row, 10, "");
   wprintw(window, ProgressBar(system.MemoryUtilization()).c_str());
-  wattroff(window, COLOR_PAIR(1));
+  wattroff(window, COLOR_PAIR(4));
   mvwprintw(window, ++row, 2,
             ("Total Processes: " + to_string(system.TotalProcesses())).c_str());
   mvwprintw(
@@ -111,6 +111,7 @@ void NCursesDisplay::Display(System &system, int n)
     init_pair(1, COLOR_BLUE, COLOR_BLACK);
     init_pair(2, COLOR_RED, COLOR_BLACK);
     init_pair(3, COLOR_GREEN, COLOR_BLACK);
+    init_pair(4, COLOR_CYAN, COLOR_BLACK);
     box(system_window, 0, 0);
     box(process_window, 0, 0);
     DisplaySystem(system, system_window);
