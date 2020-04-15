@@ -16,11 +16,13 @@ using std::string;
 using std::vector;
 
 // System constructor
-System::System(){
+System::System()
+{
     UpdateProcesses_();
     GetNumCPU();
     cpu_ = Processor();
-    for (int i = 0; i < cpuNum_; ++i){
+    for (int i = 0; i < cpuNum_; ++i)
+    {
         cpus_.push_back(Processor(std::to_string(i)));
     }
 }
@@ -29,15 +31,7 @@ System::System(){
 Processor &System::Cpu() { return cpu_; }
 
 // Return a container of cpu info
-std::vector<Processor> &System::Cpus()
-{
-    GetNumCPU();
-    //cpus_ = {};
-    for (int i = 0; i < cpuNum_; ++i){
-        cpus_[i] = (Processor(std::to_string(i)));
-    }
-    return cpus_;
-}
+std::vector<Processor> &System::Cpus() { return cpus_; }
 
 int System::GetNumCPU()
 {

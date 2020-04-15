@@ -10,7 +10,7 @@ public:
     Processor();
     Processor(std::string num);
     float Utilization(); // TODO: See src/processor.cpp
-
+    void Update(); 
     // TODO: Declare any necessary private members
 private:
     enum CPUValues
@@ -26,8 +26,8 @@ private:
     std::unordered_map<CPUValues, long, std::hash<std::underlying_type<CPUValues>::type>> CPUUtilizationValues_;
     std::unordered_map<LinuxParser::CPUStates, long, std::hash<std::underlying_type<LinuxParser::CPUStates>::type>> CpuMap_;
 
-    void CpuUtilizationValues();
-    void mapCpu();
+    void UpdateCpuUtilizationValues();
+    void mapCPU();
 };
 
 #endif

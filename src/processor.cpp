@@ -11,8 +11,7 @@ float Processor::Utilization()
     long dTotal;
     long dNonIdle;
     // Read and update the CPU values
-    mapCpu();
-    CpuUtilizationValues();
+    UpdateCpuUtilizationValues();
     // Calculate delta utilization values
     dTotal = CPUUtilizationValues_[CPUValues::Total_] - pTotal_;
     dNonIdle = CPUUtilizationValues_[CPUValues::NonIdle_] - pNonIdle_;
@@ -23,15 +22,16 @@ float Processor::Utilization()
 }
 
 // Update CPU Utilization values
-void Processor::CpuUtilizationValues()
+void Processor::UpdateCpuUtilizationValues()
 {
+    mapCPU();
     CPUUtilizationValues_[CPUValues::Idle_] = CpuMap_[LinuxParser::CPUStates::kIdle_] + CpuMap_[LinuxParser::CPUStates::kIOwait_];
     CPUUtilizationValues_[CPUValues::NonIdle_] = CpuMap_[LinuxParser::CPUStates::kUser_] + CpuMap_[LinuxParser::CPUStates::kNice_] + CpuMap_[LinuxParser::CPUStates::kSystem_] + CpuMap_[LinuxParser::CPUStates::kSteal_] + CpuMap_[LinuxParser::CPUStates::kIRQ_] + CpuMap_[LinuxParser::CPUStates::kSoftIRQ_];
     CPUUtilizationValues_[CPUValues::Total_] = CPUUtilizationValues_[CPUValues::Idle_] + CPUUtilizationValues_[CPUValues::NonIdle_];
 }
 
 // Create an unordered map from parsed data based on cpu states
-void Processor::mapCpu()
+void Processor::mapCPU()
 {
     std::vector<std::string> cpuUtilization;
     cpuUtilization = LinuxParser::CpuUtilization(cpuID_);
