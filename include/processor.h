@@ -7,6 +7,7 @@
 class Processor
 {
 public:
+    Processor();
     Processor(std::string num);
     float Utilization(); // TODO: See src/processor.cpp
 

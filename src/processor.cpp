@@ -2,6 +2,7 @@
 #include "processor.h"
 
 // Class constructor
+Processor::Processor() : cpuID_("") {};
 Processor::Processor(std::string num) : cpuID_(num) {};
 
 // TODO: Return the aggregate CPU utilization
