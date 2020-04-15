@@ -154,6 +154,33 @@ int LinuxParser::GetNumberofCPUs()
   return num;
 }
 
+// TODO: Read and return CPU utilization specific to each cpu
+vector<string> LinuxParser::CpuUtilization(std::string num)
+{
+  vector<string> cpu;
+  string line;
+  string word;
+  string cpuID = ("cpu" + num);
+  std::ifstream ifs(kProcDirectory + kStatFilename);
+  if (ifs.is_open())
+  {
+    while (std::getline(ifs, line))
+    {
+      std::istringstream linestream(line);
+      linestream >> word;
+      if (word == cpuID)
+      {
+        while (linestream >> word)
+        {
+          cpu.push_back(word);
+        }
+        return cpu;
+      }
+    }
+  }
+  return {};
+}
+
 // TODO: Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization()
 {

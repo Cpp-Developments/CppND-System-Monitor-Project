@@ -44,6 +44,7 @@ enum CPUStates
 };
 int GetNumberofCPUs();
 std::vector<std::string> CpuUtilization();
+std::vector<std::string> CpuUtilization(std::string num);
 long Jiffies();
 long ActiveJiffies();
 long ActiveJiffies(int pid);
