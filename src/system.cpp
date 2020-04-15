@@ -24,7 +24,7 @@ std::vector<Processor> &System::Cpus()
     GetNumCPU();
     cpus_ = {};
     for (int i = 0; i < cpuNum_; ++i){
-        cpus_.push_back(Processor());
+        cpus_.push_back(Processor(std::to_string(i)));
     }
     return cpus_;
 }
