@@ -7,6 +7,7 @@
 class Processor
 {
 public:
+    Processor(std::string num);
     float Utilization(); // TODO: See src/processor.cpp
 
     // TODO: Declare any necessary private members
@@ -17,7 +18,7 @@ private:
         NonIdle_,
         Total_
     };
-
+    std::string cpuID_;
     long pTotal_{0};
     long pNonIdle_{0};
 

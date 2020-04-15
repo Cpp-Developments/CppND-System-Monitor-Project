@@ -1,6 +1,9 @@
 #include <string>
 #include "processor.h"
 
+// Class constructor
+Processor::Processor(std::string num) : cpuID_(num) {};
+
 // TODO: Return the aggregate CPU utilization
 float Processor::Utilization()
 {
@@ -30,7 +33,7 @@ void Processor::CpuUtilizationValues()
 void Processor::mapCpu()
 {
     std::vector<std::string> cpuUtilization;
-    cpuUtilization = LinuxParser::CpuUtilization();
+    cpuUtilization = LinuxParser::CpuUtilization(cpuID_);
     for (size_t i = 0; i < cpuUtilization.size(); ++i)
     {
         CpuMap_[static_cast<LinuxParser::CPUStates>(i)] = std::stol(cpuUtilization[i]);
