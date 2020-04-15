@@ -6,11 +6,13 @@
 
 class Processor
 {
+    friend class System;
+
 public:
     Processor();
     Processor(std::string num);
     float Utilization(); // TODO: See src/processor.cpp
-    void Update(); 
+    void Update();
     // TODO: Declare any necessary private members
 private:
     enum CPUValues

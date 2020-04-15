@@ -15,23 +15,27 @@ using std::size_t;
 using std::string;
 using std::vector;
 
-// System constructor
-System::System()
+// TODO: Return the system's CPU
+Processor &System::Cpu()
 {
-    UpdateProcesses_();
-    GetNumCPU();
     cpu_ = Processor();
+    return cpu_;
+}
+
+// TODO: Return a container of cpu info
+std::vector<Processor> &System::Cpus()
+{
+    GetNumCPU();
+    std::vector<Processor> pcpus = cpus_;
+    cpus_ = {};
     for (int i = 0; i < cpuNum_; ++i)
     {
         cpus_.push_back(Processor(std::to_string(i)));
+        cpus_[i].pTotal_ = pcpus[i].pTotal_;
+        cpus_[i].pNonIdle_ = pcpus[i].pNonIdle_;
     }
+    return cpus_;
 }
-
-// TODO: Return the system's CPU
-Processor &System::Cpu() { return cpu_; }
-
-// Return a container of cpu info
-std::vector<Processor> &System::Cpus() { return cpus_; }
 
 int System::GetNumCPU()
 {
