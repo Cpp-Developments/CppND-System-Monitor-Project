@@ -27,12 +27,19 @@ std::vector<Processor> &System::Cpus()
 {
     GetNumCPU();
     std::vector<Processor> pcpus = cpus_;
-    cpus_ = {};
-    for (int i = 0; i < cpuNum_; ++i)
+    if (pcpus.size() > 0)
     {
-        cpus_.push_back(Processor(std::to_string(i)));
-        cpus_[i].pTotal_ = pcpus[i].pTotal_;
-        cpus_[i].pNonIdle_ = pcpus[i].pNonIdle_;
+        for (int i = 0; i < cpuNum_; ++i)
+        {
+            cpus_[i].UpdateCpuUtilizationValues();
+        }
+    }
+    else
+    {
+        for (int i = 0; i < cpuNum_; ++i)
+        {
+            cpus_.push_back(Processor(std::to_string(i)));
+        }
     }
     return cpus_;
 }
