@@ -15,6 +15,16 @@ using std::size_t;
 using std::string;
 using std::vector;
 
+// System constructor
+System::System(){
+    UpdateProcesses_();
+    GetNumCPU();
+    cpu_ = Processor();
+    for (int i = 0; i < cpuNum_; ++i){
+        cpus_.push_back(Processor(std::to_string(i)));
+    }
+}
+
 // TODO: Return the system's CPU
 Processor &System::Cpu() { return cpu_; }
 
@@ -22,9 +32,9 @@ Processor &System::Cpu() { return cpu_; }
 std::vector<Processor> &System::Cpus()
 {
     GetNumCPU();
-    cpus_ = {};
+    //cpus_ = {};
     for (int i = 0; i < cpuNum_; ++i){
-        cpus_.push_back(Processor(std::to_string(i)));
+        cpus_[i] = (Processor(std::to_string(i)));
     }
     return cpus_;
 }

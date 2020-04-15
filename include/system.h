@@ -9,6 +9,7 @@
 
 class System {
  public:
+  System();
   Processor& Cpu();                   // TODO: See src/system.cpp
   std::vector<Processor>& Cpus();     // Return a container of cpu info
   std::vector<Process>& Processes();  // TODO: See src/system.cpp
@@ -23,7 +24,7 @@ class System {
   // TODO: Define any necessary private members
  private:
   int cpuNum_ = 1;
-  Processor cpu_ = Processor();
+  Processor cpu_ = {};
   std::vector<Processor> cpus_ = {};
   std::vector<Process> processes_ = {};
   void UpdateProcesses_();
