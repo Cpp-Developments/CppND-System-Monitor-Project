@@ -127,7 +127,17 @@ long LinuxParser::Jiffies()
 
 // TODO: Read and return the number of active jiffies for a PID
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid [[maybe_unused]]) { return 0; }
+long LinuxParser::ActiveJiffies(int pid)
+{
+  std::vector<std::string> cpuValues = CpuUtilization(pid);
+  std::vector<int> totalIndeces{13, 14, 15, 16};
+  long ActiveJiffies = 0;
+  for (int i : totalIndeces)
+  {
+    ActiveJiffies += std::stol(cpuValues[i]);
+  }
+  return ActiveJiffies;
+}
 
 // TODO: Read and return the number of active jiffies for the system
 long LinuxParser::ActiveJiffies()
