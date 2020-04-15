@@ -20,22 +20,12 @@ int Process::Pid() { return pid_; }
 // TODO: Return this process's CPU utilization
 float Process::CpuUtilization()
 {
-    vector<std::string> ProcessCPU;
-    ProcessCPU = LinuxParser::CpuUtilization(pid_);
-
-    long int utime = std::stol(ProcessCPU[13]);
-    long int stime = std::stol(ProcessCPU[14]);
-    long int cutime = std::stol(ProcessCPU[15]);
-    long int cstime = std::stol(ProcessCPU[16]);
+    vector<std::string> ProcessCPU = LinuxParser::CpuUtilization(pid_);
     long int starttime = std::stol(ProcessCPU[21]);
     long int hz = sysconf(_SC_CLK_TCK);
     long uptime = LinuxParser::UpTime();
-    long int totaltime;
-    long int seconds;
-
-    totaltime = utime + stime + cutime + cstime;
-    seconds = uptime - (starttime / hz);
-
+    long totaltime = LinuxParser::ActiveJiffies(pid_);
+    long seconds = uptime - (starttime / hz);
     return (totaltime / hz) / (seconds * 1.0);
 }
 
